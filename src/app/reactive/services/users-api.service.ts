@@ -39,12 +39,17 @@ export class UsersApiService {
     return this.http.post<User>(url.toString(), body);
   }
 
-  public put$(id: string, body: User): Observable<User> {
+  public put$(id: string | number, body: User): Observable<User> {
     const url = new URL(`${environment.baseUrl}/${this.getPath()}/${id}`);
     return this.http.put<User>(url.toString(), body);
   }
 
-  public delete$(id: string): Observable<void> {
+  public patch$(id: string | number, body: Partial<User>): Observable<User> {
+    const url = new URL(`${environment.baseUrl}/${this.getPath()}/${id}`);
+    return this.http.patch<User>(url.toString(), body);
+  }
+
+  public delete$(id: string | number): Observable<void> {
     const url = `${environment.baseUrl}/${this.getPath()}/${id}`;
     return this.http.delete<void>(url);
   }
