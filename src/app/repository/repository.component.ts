@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { UsersApiService } from './services/users-api.service';
 import { UsersCacheService } from './services/users-cache.service';
 import { UsersRepositoryService } from './services/users-repository.service';
@@ -12,5 +12,7 @@ import { UsersRepositoryService } from './services/users-repository.service';
   styleUrl: './repository.component.scss'
 })
 export class RepositoryComponent {
+  usersRepositoryService = inject(UsersRepositoryService);
 
+  users$ = this.usersRepositoryService.getAll$();
 }
