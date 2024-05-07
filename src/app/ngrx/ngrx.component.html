@@ -1,1 +1,13 @@
-<p>ngrx works!</p>
+<div>
+  <h1>NgRx</h1>
+
+  <div>
+    @if (loading$ | async) {
+           Loading...
+      } @else {
+        {{ users$ | async }}
+      }
+  </div>
+
+
+</div>

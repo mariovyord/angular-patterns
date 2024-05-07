@@ -14,20 +14,20 @@ export const getUserSuccess = createAction(
   props<{ user: User }>()
 );
 export const loadUsers = createAction(
-    `${namespace} load posts`,
+    `${namespace} load users`,
 )
 
 export const loadUsersSuccess = createAction(
-    `${namespace} load posts success`,
+    `${namespace} load users success`,
     props<{ users: User[] }>(),
 )
 
 export const loadUsersFailure = createAction(
-    `${namespace} load posts failure`,
+    `${namespace} load users failure`,
 )
 
 export const loadUsersCancel = createAction(
-    `${namespace} load posts cancel`,
+    `${namespace} load users cancel`,
 )
 
 export const createUser = createAction(
