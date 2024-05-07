@@ -1,16 +1,16 @@
 import { createAction, props } from "@ngrx/store"
-import { Update } from '@ngrx/entity';
 import { User } from "../../repository/models/models"
+import { Update } from "@ngrx/entity";
 
-const namespace = '[ALL POSTS]'
+const namespace = `[USERS]`
 
 export const getUser = createAction(
-  '[User/API] Get User',
+  `${namespace} Get User`,
   props<{ id: string }>()
 );
 
 export const getUserSuccess = createAction(
-  '[User/API] Get User Success',
+  `${namespace} Get User Success`,
   props<{ user: User }>()
 );
 export const loadUsers = createAction(
@@ -31,46 +31,46 @@ export const loadUsersCancel = createAction(
 )
 
 export const createUser = createAction(
-  '[User/API] Create User',
+  `${namespace} Create User`,
   props<{ user: User }>()
 );
 
-export const createUsersSuccess = createAction(
-  '[User/API] Create User Success',
+export const createUserSuccess = createAction(
+  `${namespace} Create User Success`,
   props<{ user: User }>()
 );
 
-export const createUsersFailure = createAction(
-  '[User/API] Create User Failure',
+export const createUserFailure = createAction(
+  `${namespace} Create User Failure`,
   props<{ error: any }>()
 );
 
 export const updateUser = createAction(
-  '[User/API] Update User',
+  `${namespace} Update User`,
   props<{ update: Update<User> }>()
 );
 
 export const updateUserSuccess = createAction(
-  '[User/API] Update User Success',
+  `${namespace} Update User Success`,
   props<{ user: User }>()
 );
 
 export const updateUserFailure = createAction(
-  '[User/API] Update User Failure',
+  `${namespace} Update User Failure`,
   props<{ error: any }>()
 );
 
 export const deleteUser = createAction(
-  '[User/API] Delete User',
+  `${namespace} Delete User`,
   props<{ id: number }>()
 );
 
 export const deleteUserSuccess = createAction(
-  '[User/API] Delete User Success',
+  `${namespace} Delete User Success`,
   props<{ id: number }>()
 );
 
 export const deleteUserFailure = createAction(
-  '[User/API] Delete User Failure',
+  `${namespace} Delete User Failure`,
   props<{ error: any }>()
 );

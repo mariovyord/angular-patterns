@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
-import { switchMap, takeUntil, catchError, map, mergeMap, take } from 'rxjs/operators';
+import { switchMap, takeUntil, catchError, map, mergeMap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from "@ngrx/effects";
-import { createUser, createUsersSuccess, deleteUser, deleteUserSuccess, getUser, getUserSuccess, loadUsers, loadUsersCancel, loadUsersFailure, loadUsersSuccess, updateUser, updateUserFailure, updateUserSuccess } from "./users.actions";
+import { createUser, createUserSuccess, deleteUser, deleteUserSuccess, getUser, getUserSuccess, loadUsers, loadUsersCancel, loadUsersFailure, loadUsersSuccess, updateUser, updateUserSuccess } from "./users.actions";
 import { UsersApiService } from "../../reactive/services/users-api.service";
 
 @Injectable()
@@ -39,7 +39,7 @@ export class PostsEffects {
         ofType(createUser),
         mergeMap(action =>
           this.apiService.post$(action.user).pipe(
-            map(user => createUsersSuccess({ user })
+            map(user => createUserSuccess({ user })
           )
         )
       )
