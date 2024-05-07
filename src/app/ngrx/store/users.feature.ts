@@ -7,12 +7,12 @@ export const adapter: EntityAdapter<User> = createEntityAdapter<User>();
 
 export interface State extends EntityState<User> {
   users: User[];
-  loading: boolean;
+  status: 'idle' | 'loading' | 'succeeded' | 'failed';
 };
 
 export const initialState: State = adapter.getInitialState({
   users: [],
-  loading: false,
+  status: 'idle'
 });
 
 export const usersFeature = createFeature(
@@ -22,33 +22,33 @@ export const usersFeature = createFeature(
             initialState,
             on(usersActions.loadUsers, (state) => ({
                 ...state,
-                loading: true
+                status: 'loading' as const
             })),
             on(usersActions.loadUsersSuccess, (state, data) => ({
                 ...state,
                 users: [...state.users, ...data.users],
-                loading: false
+                status: 'succeeded' as const
             })),
             on(usersActions.loadUsersCancel, (state) => ({
                 ...state,
-                loading: false
+                status: 'succeeded' as const
             })),
             on(usersActions.loadUsersFailure, (state) => ({
                 ...state,
-                loading: false
+                status: 'failed' as const
             })),
 
-            on(usersActions.createUser, state => ({ ...state, loading: true })),
-            on(usersActions.createUserSuccess, (state, { user }) => adapter.addOne(user, { ...state, loading: false })),
-            on(usersActions.createUserFailure, state => ({ ...state, loading: false })),
+            on(usersActions.createUser, state => ({ ...state, status: 'loading' as const })),
+            on(usersActions.createUserSuccess, (state, { user }) => adapter.addOne(user, { ...state, status: 'succeeded' as const })),
+            on(usersActions.createUserFailure, state => ({ ...state, status: 'failed' as const })),
 
-            on(usersActions.updateUser, state => ({ ...state, loading: true })),
-            on(usersActions.updateUserSuccess, (state, { user }) => adapter.updateOne({ id: user.id, changes: user }, { ...state, loading: false })),
-            on(usersActions.updateUserFailure, state => ({ ...state, loading: false })),
+            on(usersActions.updateUser, state => ({ ...state, status: 'loading' as const })),
+            on(usersActions.updateUserSuccess, (state, { user }) => adapter.updateOne({ id: user.id, changes: user }, { ...state, status: 'succeeded' as const })),
+            on(usersActions.updateUserFailure, state => ({ ...state, status: 'failed' as const })),
 
-            on(usersActions.deleteUser, state => ({ ...state, loading: true })),
-            on(usersActions.deleteUserSuccess, (state, { id }) => adapter.removeOne(id, { ...state, loading: false })),
-            on(usersActions.deleteUserFailure, state => ({ ...state, loading: false })),
+            on(usersActions.deleteUser, state => ({ ...state, status: 'loading' as const })),
+            on(usersActions.deleteUserSuccess, (state, { id }) => adapter.removeOne(id, { ...state, status: 'succeeded' as const })),
+            on(usersActions.deleteUserFailure, state => ({ ...state, status: 'failed' as const })),
         )
     }
 )
@@ -58,5 +58,5 @@ export const {
     reducer,
     selectUsersState,
     selectUsers,
-    selectLoading,
+    selectStatus,
 } = usersFeature;

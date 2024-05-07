@@ -2,11 +2,11 @@
   <h1>NgRx</h1>
 
   <div>
-    @if (loading$ | async) {
-           Loading...
-      } @else {
-        {{ users$ | async }}
-      }
+    @if (status() === 'loading') {
+      Loading...
+    } @else {
+      {{ users() }}
+    }
   </div>
 
 
