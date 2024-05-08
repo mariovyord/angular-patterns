@@ -1,8 +1,8 @@
-import { createAction, props } from "@ngrx/store"
-import { User } from "../../repository/models/models"
-import { Update } from "@ngrx/entity";
+import { createAction, props } from '@ngrx/store';
+import { Update } from '@ngrx/entity';
+import { User } from '../models/models';
 
-const namespace = `[USERS]`
+const namespace = `[USERS]`;
 
 export const getUser = createAction(
   `${namespace} Get User`,
@@ -13,22 +13,16 @@ export const getUserSuccess = createAction(
   `${namespace} Get User Success`,
   props<{ user: User }>()
 );
-export const loadUsers = createAction(
-    `${namespace} load users`,
-)
+export const loadUsers = createAction(`${namespace} load users`);
 
 export const loadUsersSuccess = createAction(
-    `${namespace} load users success`,
-    props<{ users: User[] }>(),
-)
+  `${namespace} load users success`,
+  props<{ users: User[] }>()
+);
 
-export const loadUsersFailure = createAction(
-    `${namespace} load users failure`,
-)
+export const loadUsersFailure = createAction(`${namespace} load users failure`);
 
-export const loadUsersCancel = createAction(
-    `${namespace} load users cancel`,
-)
+export const loadUsersCancel = createAction(`${namespace} load users cancel`);
 
 export const createUser = createAction(
   `${namespace} Create User`,
