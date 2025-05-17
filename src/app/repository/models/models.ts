@@ -1,4 +1,4 @@
-import { Observable } from "rxjs";
+import { Observable } from 'rxjs';
 import { Params } from '@angular/router';
 
 export interface IApiService<T> {
@@ -28,7 +28,7 @@ export interface IRepository<T> {
 }
 
 export interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
 }

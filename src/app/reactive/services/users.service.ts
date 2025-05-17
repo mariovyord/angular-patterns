@@ -8,7 +8,7 @@ import { UsersApiService } from './users-api.service';
 export class UsersService {
   constructor(
     private usersStore: UsersStoreService,
-    private usersApiService: UsersApiService,
+    private usersApiService: UsersApiService
   ) {
     this.fetchAll();
   }
@@ -16,16 +16,14 @@ export class UsersService {
   private fetchAll() {
     this.usersStore.setState('loading');
 
-    this.usersApiService
-      .getAll$()
-      .subscribe({
-        next: (users) => {
-          this.usersStore.setStore(users);
-          this.usersStore.setState('idle');
-        },
-        error: (error) => {
-          this.usersStore.setState('error')
-        },
-      });
+    this.usersApiService.getAll$().subscribe({
+      next: (users) => {
+        this.usersStore.setStore(users);
+        this.usersStore.setState('success');
+      },
+      error: (error) => {
+        this.usersStore.setState('error');
+      },
+    });
   }
 }

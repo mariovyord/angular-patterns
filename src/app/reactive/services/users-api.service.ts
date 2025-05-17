@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Params } from '@angular/router';
 import { environment } from '../../../enviroments/enviroment';
@@ -9,7 +9,7 @@ import { User } from '../models/models';
   providedIn: 'root',
 })
 export class UsersApiService {
-  constructor(private http: HttpClient) {}
+  private readonly http = inject(HttpClient);
 
   private getPath(): string {
     return 'users';

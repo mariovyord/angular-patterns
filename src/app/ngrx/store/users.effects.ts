@@ -11,7 +11,7 @@ import * as usersActions from './users.actions';
 import { UsersApiService } from '../services/users-api.service';
 
 @Injectable()
-export class PostsEffects {
+export class UsersEffects {
   constructor(private actions$: Actions, private apiService: UsersApiService) {}
 
   getUser$ = createEffect(() =>
