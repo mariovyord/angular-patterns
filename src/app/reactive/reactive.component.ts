@@ -1,11 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { UsersStoreService } from './services/users-store.service';
 import { map } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-reactive',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe],
   templateUrl: './reactive.component.html',
   styleUrl: './reactive.component.scss'
 })
